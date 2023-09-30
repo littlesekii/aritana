@@ -1,4 +1,4 @@
-package lib.littlesekii.aritana;
+package io.github.littlesekii.aritana;
 
 public class Main {
 	final static private String LIB_VERSION = "v0.0.1";

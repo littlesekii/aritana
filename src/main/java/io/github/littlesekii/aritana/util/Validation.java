@@ -1,4 +1,4 @@
-package lib.littlesekii.aritana.util;
+package io.github.littlesekii.aritana.util;
 
 public class Validation {
 	
