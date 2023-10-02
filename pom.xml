@@ -1,12 +1,123 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>io.github.littlesekii</groupId>
-  <artifactId>aritana</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>io.github.littlesekii</groupId>
+  	<artifactId>aritana</artifactId>
+  	<version>1.0.0</version>
+  	
+  	<properties>
+    	<maven.compiler.source>17</maven.compiler.source>
+    	<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+   	</properties>
+   	
+   	<build>
+		<plugins>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-war-plugin</artifactId>
+			  <version>3.3.1</version>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-compiler-plugin</artifactId>
+			  <version>3.8.1</version>
+			</plugin>
+   			<plugin>
+			  <groupId>org.sonatype.plugins</groupId>
+			  <artifactId>nexus-staging-maven-plugin</artifactId>
+			  <version>1.6.7</version>
+			  <extensions>true</extensions>
+			  <configuration>
+			    <serverId>ossrh</serverId>
+			    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+			    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+			  </configuration>
+			  <dependencies>
+			    <dependency>
+			      <groupId>com.thoughtworks.xstream</groupId>
+			      <artifactId>xstream</artifactId>
+			      <version>1.4.15</version> <!-- apparently this needs to be exactly this version -->
+			    </dependency>
+			  </dependencies>
+			</plugin>
+    		<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-source-plugin</artifactId>
+			    <version>2.2.1</version>
+			    <executions>
+			        <execution>
+			            <id>attach-sources</id>
+			            <goals>
+			                <goal>jar-no-fork</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-javadoc-plugin</artifactId>
+			    <version>2.9.1</version>
+			    <executions>
+			        <execution>
+			        <id>attach-javadocs</id>
+			            <goals>
+			                <goal>jar</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-gpg-plugin</artifactId>
+			    <version>1.5</version>
+			    <executions>
+			        <execution>
+			            <id>sign-artifacts</id>
+			            <phase>verify</phase>
+			            <goals>
+			                <goal>sign</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+  		</plugins>
+	</build>
+  
+  	<name>Aritana Library</name>
+  	<description>This is a simple library with some useful common functions.</description>
+  	<url>http://github.com/littlesekii/aritana</url>
+  
+  	<licenses>
+	  	<license>
+	    	<name>MIT License</name>
+	    	<url>http://www.opensource.org/licenses/mit-license.php</url>
+	  	</license>
+  	</licenses>
+  	
+  	<developers>
+	    <developer>
+	      <name>Davi Bacalhau</name>
+	      <email>littlesekii@gmail.com</email>
+	      <organization>io.github.littlesekii</organization>
+	      <organizationUrl>http://www.github.com/littlesekii</organizationUrl>
+	    </developer>
+ 	</developers>
+ 	
+ 	<scm>
+	  	<connection>scm:git:git://github.com/littlesekii/aritana.git</connection>
+	  	<developerConnection>scm:git:ssh://github.com:littlesekii/aritana.git</developerConnection>
+	  	<url>http://github.com/littlesekii/aritana</url>
+	</scm>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+		    <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+		    <id>ossrh</id>
+		    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	 
 </project>
